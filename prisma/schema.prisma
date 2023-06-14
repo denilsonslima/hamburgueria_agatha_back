@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model beverage {
+  id             Int              @id(map: "beverage_pk") @default(autoincrement())
+  name           String           @db.VarChar(255)
+  price          Decimal          @db.Decimal(10, 2)
+  created_at     DateTime         @default(now()) @db.Timestamptz(6)
+  order_beverage order_beverage[]
+}
+
+model burger {
+  id           Int            @id(map: "burger_pk") @default(autoincrement())
+  name         String         @db.VarChar(255)
+  price        Decimal        @db.Decimal(10, 2)
+  created_at   DateTime       @default(now()) @db.Timestamptz(6)
+  order_burger order_burger[]
+}
+
+model order_beverage {
+  id          Int      @id(map: "order_beverage_pk") @default(autoincrement())
+  order_id    Int
+  beverage_id Int
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  orders      orders   @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "order_beverage_fk0")
+  beverage    beverage @relation(fields: [beverage_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "order_beverage_fk1")
+}
+
+model order_burger {
+  id         Int      @id(map: "order_burger_pk") @default(autoincrement())
+  order_id   Int
+  burger_id  Int
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  orders     orders   @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "order_burger_fk0")
+  burger     burger   @relation(fields: [burger_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "order_burger_fk1")
+}
+
+model orders {
+  id             Int              @id(map: "order_pk") @default(autoincrement())
+  user_id        Int
+  date_time      DateTime         @default(now()) @db.Timestamp(6)
+  created_at     DateTime         @default(now()) @db.Timestamptz(6)
+  status         orderstatus      @default(pending)
+  order_beverage order_beverage[]
+  order_burger   order_burger[]
+  users          users            @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "order_fk0")
+}
+
+model users {
+  id         Int      @id(map: "users_pk") @default(autoincrement())
+  name       String   @db.VarChar(255)
+  email      String   @unique @db.VarChar(255)
+  password   String   @db.VarChar(100)
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  orders     orders[]
+}
+
+enum orderstatus {
+  pending
+  completed
+  cancelled
+}
