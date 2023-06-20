@@ -11,6 +11,7 @@ model beverage {
   id             Int              @id(map: "beverage_pk") @default(autoincrement())
   name           String           @db.VarChar(255)
   price          Decimal          @db.Decimal(10, 2)
+  image          String           @db.VarChar(255)
   created_at     DateTime         @default(now()) @db.Timestamptz(6)
   order_beverage order_beverage[]
 }
@@ -19,6 +20,7 @@ model burger {
   id           Int            @id(map: "burger_pk") @default(autoincrement())
   name         String         @db.VarChar(255)
   price        Decimal        @db.Decimal(10, 2)
+  image        String         @db.VarChar(255)
   created_at   DateTime       @default(now()) @db.Timestamptz(6)
   order_burger order_burger[]
 }
