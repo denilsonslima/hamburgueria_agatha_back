@@ -39,31 +39,31 @@ async function main() {
 
   const beverage = [
     {
-      id: 1,
+      id: 5,
       name: "Fanta Guaraná",
       price: 5.0,
-      image: "https://www.google.com",
+      image: "https://s3-sa-east-1.amazonaws.com/bluesoft-erp/estrelaazul/ecommerce/produtos/fotos/b7f1acf8-81c5-4db0-a3ad-43001028ca28/foto_product.jpg",
       created_at: new Date(),
     },
     {
-      id: 2,
+      id: 6,
       name: "Coca Cola",
       price: 7.0,
-      image: "https://www.google.com",
+      image: "https://media.gettyimages.com/id/458464735/pt/foto/coca-cola.jpg?s=612x612&w=0&k=20&c=JsWw1GFPrd6cYMRxYtoKohevrywe-HwOz4mOa6zlluo=",
       created_at: new Date(),
     },
     {
-      id: 3,
+      id: 7,
       name: "McShake Ovomaltine",
-      price: 10.0,
-      image: "https://www.google.com",
+      price: 15.0,
+      image: "https://d2umxhib5z7frz.cloudfront.net/Brasil/79458%20MOP.png?1627559671018",
       created_at: new Date(),
     },
     {
-      id: 4,
+      id: 8,
       name: "McShake Ovomaltine",
-      price: 10.0,
-      image: "https://www.google.com",
+      price: 20.0,
+      image: "https://s2.glbimg.com/t2SngMVdFNPzWZxsABxUkGYopLw=/s.glbimg.com/jo/g1/f/original/2016/09/13/milk.jpg",
       created_at: new Date(),
     },
   ];
